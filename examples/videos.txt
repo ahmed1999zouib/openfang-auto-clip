@@ -1,0 +1,14 @@
+# Video URLs for batch processing
+# One URL per line
+
+# Educational / Tech
+https://www.youtube.com/watch?v=aircAruvnKk  # 3Blue1Brown - Neural Networks
+https://www.youtube.com/watch?v=Ihz8uPiOImI  # AI Video
+
+# Documentaries
+https://www.youtube.com/watch?v=EXAMPLE1
+
+# Tutorials
+https://www.youtube.com/watch?v=EXAMPLE2
+
+# Add your own URLs below

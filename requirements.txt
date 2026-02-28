@@ -1,0 +1,17 @@
+# OpenFang Auto Clip - Python Dependencies
+
+# Core dependencies
+requests>=2.31.0
+yt-dlp>=2024.1.1
+
+# Audio transcription
+openai-whisper>=20231117
+
+# Video processing (optional, for advanced features)
+# moviepy>=1.0.3
+
+# Development dependencies (optional)
+# pytest>=7.4.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.5.0

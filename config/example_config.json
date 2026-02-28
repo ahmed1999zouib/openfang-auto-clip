@@ -1,0 +1,54 @@
+{
+  "default_duration": 60,
+  "min_duration": 30,
+  "max_duration": 90,
+  "target_platforms": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "douyin"
+  ],
+  "auto_caption": true,
+  "caption_style": "dynamic",
+  "whisper_model": "base",
+  "transform_level": 1,
+  "openfang_api": "http://127.0.0.1:4200",
+
+  "transformation": {
+    "level_1": {
+      "enabled": true,
+      "style": "remix",
+      "speed_modifier": 1.2,
+      "color_grading": true,
+      "mirror": true
+    },
+    "level_2": {
+      "enabled": false,
+      "voiceover_provider": "elevenlabs",
+      "stock_footage_api": ""
+    },
+    "level_3": {
+      "enabled": false,
+      "image_gen_api": "dalle",
+      "music_gen_api": ""
+    }
+  },
+
+  "platforms": {
+    "tiktok": {
+      "resolution": "1080x1920",
+      "duration_range": [15, 60],
+      "bitrate": "4000k"
+    },
+    "shorts": {
+      "resolution": "1080x1920",
+      "duration_range": [30, 60],
+      "bitrate": "5000k"
+    },
+    "reels": {
+      "resolution": "1080x1920",
+      "duration_range": [15, 90],
+      "bitrate": "4500k"
+    }
+  }
+}
