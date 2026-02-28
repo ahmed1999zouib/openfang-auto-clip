@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFang Auto Clip - 管理界面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-info {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.running {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status.completed {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .log-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .log-panel h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .log-content {
+            background: #1e1e1e;
+            color: #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .character-list {
+            margin-top: 15px;
+        }
+
+        .character-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .character-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .character-item small {
+            color: #666;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .quick-action-btn {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>🎬 OpenFang Auto Clip</h1>
+            <p>Web可视化管理界面 - 一键操作，简单高效</p>
+            <p style="margin-top: 15px; color: #4CAF50; font-weight: 600;">
+                ✅ 所有操作都在本地完成 | ✅ 无需API Key | ✅ 完全免费
+            </p>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="number" id="taskCount">0</div>
+                <div class="label">运行任务</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="charCount">0</div>
+                <div class="label">IP角色</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="statusCount">●</div>
+                <div class="label">系统状态</div>
+            </div>
+        </div>
+
+        <!-- 主要操作 -->
+        <div class="grid">
+            <!-- IP角色生成 -->
+            <div class="card">
+                <h2><span class="card-icon">🎨</span> IP角色生成</h2>
+                <p style="color: #666; margin-bottom: 15px;">生成原创卡通角色，彻底规避版权问题</p>
+
+                <button class="btn btn-primary" onclick="generateIPCharacter()">
+                    🎨 生成IP角色
+                </button>
+
+                <button class="btn btn-success" onclick="openTestPage()">
+                    🌐 打开测试页面
+                </button>
+
+                <div id="ipStatus" class="status"></div>
+            </div>
+
+            <!-- 视频处理 -->
+            <div class="card">
+                <h2><span class="card-icon">🎬</span> 版权转换测试</h2>
+                <p style="color: #666; margin-bottom: 15px;">测试Level 1版权转换效果</p>
+
+                <button class="btn btn-warning" onclick="transformVideo()">
+                    🔄 开始版权转换
+                </button>
+
+                <button class="btn btn-info" onclick="createClips()">
+                    ✂️ 创建视频片段
+                </button>
+
+                <div id="transformStatus" class="status"></div>
+            </div>
+
+            <!-- Level 3 重制 -->
+            <div class="card">
+                <h2><span class="card-icon">🚀</span> Level 3 完全重制</h2>
+                <p style="color: #666; margin-bottom: 15px;">生成完整项目包（脚本+角色+场景）</p>
+
+                <button class="btn btn-primary" onclick="level3Recreate()">
+                    📦 生成项目包
+                </button>
+
+                <div id="recreateStatus" class="status"></div>
+            </div>
+
+            <!-- YouTube处理 -->
+            <div class="card">
+                <h2><span class="card-icon">📹</span> YouTube视频处理</h2>
+                <p style="color: #666; margin-bottom: 15px;">下载、转换、剪辑一气呵成</p>
+
+                <div class="input-group">
+                    <label>视频URL</label>
+                    <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <div class="input-group">
+                    <label>版权转换级别</label>
+                    <select id="transformLevel">
+                        <option value="1">Level 1 - 视觉转换（快速）</option>
+                        <option value="2">Level 2 - 脚本重写（安全）</option>
+                        <option value="3">Level 3 - 完全重制（最安全）</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-success" onclick="processVideo()">
+                    🚀 开始处理
+                </button>
+
+                <div id="videoStatus" class="status"></div>
+            </div>
+        </div>
+
+        <!-- IP角色列表 -->
+        <div class="card">
+            <h2><span class="card-icon">👥</span> 已生成的IP角色</h2>
+            <div id="characterList" class="character-list">
+                <p style="color: #999;">加载中...</p>
+            </div>
+        </div>
+
+        <!-- 日志面板 -->
+        <div class="log-panel">
+            <h2>📋 实时日志</h2>
+            <div class="log-content" id="logContent">等待操作...</div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStatus();
+            loadCharacters();
+            // 每5秒更新状态
+            setInterval(loadStatus, 5000);
+        });
+
+        // 加载系统状态
+        async function loadStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+
+                // 更新统计
+                document.getElementById('taskCount').textContent = Object.keys(data.tasks).length;
+                document.getElementById('statusCount').textContent = '●';
+                document.getElementById('statusCount').style.color = '#4CAF50';
+
+                // 检查运行中的任务
+                for (const [taskId, task] of Object.entries(data.tasks)) {
+                    if (task.status === 'running') {
+                        checkTaskStatus(taskId);
+                    }
+                }
+            } catch (error) {
+                console.error('加载状态失败:', error);
+            }
+        }
+
+        // 加载IP角色列表
+        async function loadCharacters() {
+            try {
+                const response = await fetch('/api/ip-characters');
+                const data = await response.json();
+
+                const listEl = document.getElementById('characterList');
+
+                if (data.characters && data.characters.length > 0) {
+                    listEl.innerHTML = data.characters.map(char => `
+                        <div class="character-item">
+                            <strong>📁 ${char.name}</strong>
+                            <small>修改时间: ${new Date(char.modified).toLocaleString('zh-CN')}</small>
+                            <button class="btn btn-info" style="margin-top: 10px; font-size: 12px; padding: 8px 16px;" onclick="openDirectory('${char.path}')">
+                                📂 打开
+                            </button>
+                        </div>
+                    `).join('');
+
+                    document.getElementById('charCount').textContent = data.characters.length;
+                } else {
+                    listEl.innerHTML = '<p style="color: #999;">暂无IP角色，点击上方"生成IP角色"开始创建</p>';
+                    document.getElementById('charCount').textContent = '0';
+                }
+            } catch (error) {
+                console.error('加载角色失败:', error);
+            }
+        }
+
+        // 生成IP角色
+        async function generateIPCharacter() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 生成中...';
+
+            const statusEl = document.getElementById('ipStatus');
+            statusEl.className = 'status running show';
+            statusEl.textContent = '🔄 正在生成IP角色...';
+
+            addLog('开始生成IP角色...');
+
+            try {
+                const response = await fetch('/api/generate-ip-character', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.task_id) {
+                    addLog(`✅ 任务已启动: ${data.task_id}`);
+                    checkTaskStatus(data.task_id, 'ipStatus');
+
+                    // 3秒后刷新角色列表
+                    setTimeout(() => {
+                        loadCharacters();
+                    }, 3000);
+                }
+            } catch (error) {
+                statusEl.className = 'status error show';
+                statusEl.textContent = '❌ 生成失败: ' + error.message;
+                addLog('❌ 生成失败: ' + error.message);
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '🎨 生成IP角色';
+        }
+
+        // 打开测试页面
+        async function openTestPage() {
+            addLog('正在打开测试页面...');
+
+            try {
+                const response = await fetch('/api/open-test-page');
+                const data = await response.json();
+
+                if (data.error) {
+                    addLog('❌ ' + data.error);
+                } else {
+                    addLog('✅ ' + data.message);
+                }
+            } catch (error) {
+                addLog('❌ 打开失败: ' + error.message);
+            }
+        }
+
+        // 版权转换
+        async function transformVideo() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 转换中...';
+
+            const statusEl = document.getElementById('transformStatus');
+            statusEl.className = 'status running show';
+            statusEl.textContent = '🔄 正在进行版权转换...';
+
+            addLog('开始版权转换...');
+
+            try {
+                const response = await fetch('/api/transform-video', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.task_id) {
+                    addLog(`✅ 任务已启动: ${data.task_id}`);
+                    checkTaskStatus(data.task_id, 'transformStatus');
+                }
+            } catch (error) {
+                statusEl.className = 'status error show';
+                statusEl.textContent = '❌ 转换失败';
+                addLog('❌ 转换失败: ' + error.message);
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '🔄 开始版权转换';
+        }
+
+        // 创建片段
+        async function createClips() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 创建中...';
+
+            const statusEl = document.getElementById('transformStatus');
+            statusEl.className = 'status running show';
+            statusEl.textContent = '🔄 正在创建视频片段...';
+
+            addLog('开始创建视频片段...');
+
+            try {
+                const response = await fetch('/api/create-clips', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.task_id) {
+                    addLog(`✅ 任务已启动: ${data.task_id}`);
+                    checkTaskStatus(data.task_id, 'transformStatus');
+                }
+            } catch (error) {
+                statusEl.className = 'status error show';
+                statusEl.textContent = '❌ 创建失败';
+                addLog('❌ 创建失败: ' + error.message);
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '✂️ 创建视频片段';
+        }
+
+        // Level 3 重制
+        async function level3Recreate() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 生成中...';
+
+            const statusEl = document.getElementById('recreateStatus');
+            statusEl.className = 'status running show';
+            statusEl.textContent = '🔄 正在生成项目包...';
+
+            addLog('开始Level 3完全重制...');
+
+            try {
+                const response = await fetch('/api/level3-recreate', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.task_id) {
+                    addLog(`✅ 任务已启动: ${data.task_id}`);
+                    checkTaskStatus(data.task_id, 'recreateStatus');
+
+                    setTimeout(() => {
+                        loadCharacters();
+                    }, 3000);
+                }
+            } catch (error) {
+                statusEl.className = 'status error show';
+                statusEl.textContent = '❌ 生成失败';
+                addLog('❌ 生成失败: ' + error.message);
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '📦 生成项目包';
+        }
+
+        // 处理YouTube视频
+        async function processVideo() {
+            const url = document.getElementById('videoUrl').value.trim();
+            const level = document.getElementById('transformLevel').value;
+
+            if (!url) {
+                alert('请输入视频URL');
+                return;
+            }
+
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 处理中...';
+
+            const statusEl = document.getElementById('videoStatus');
+            statusEl.className = 'status running show';
+            statusEl.textContent = '🔄 正在处理视频...';
+
+            addLog(`开始处理视频: ${url}`);
+
+            try {
+                const response = await fetch('/api/process-video', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url, transform_level: level })
+                });
+                const data = await response.json();
+
+                if (data.task_id) {
+                    addLog(`✅ 任务已启动: ${data.task_id}`);
+                    checkTaskStatus(data.task_id, 'videoStatus');
+                }
+            } catch (error) {
+                statusEl.className = 'status error show';
+                statusEl.textContent = '❌ 处理失败';
+                addLog('❌ 处理失败: ' + error.message);
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '🚀 开始处理';
+        }
+
+        // 检查任务状态
+        async function checkTaskStatus(taskId, statusElementId = null) {
+            const maxAttempts = 60; // 最多检查60次（5分钟）
+            let attempts = 0;
+
+            const checkInterval = setInterval(async () => {
+                attempts++;
+
+                try {
+                    const response = await fetch(`/api/task-status/${taskId}`);
+                    const data = await response.json();
+
+                    if (data.status === 'completed') {
+                        clearInterval(checkInterval);
+                        addLog(`✅ 任务完成: ${taskId}`);
+
+                        if (data.output) {
+                            addLog('输出:\n' + data.output);
+                        }
+
+                        if (statusElementId) {
+                            const el = document.getElementById(statusElementId);
+                            el.className = 'status completed show';
+                            el.textContent = '✅ 完成！';
+                        }
+
+                        // 刷新角色列表
+                        if (taskId.startsWith('ip_char_') || taskId.startsWith('recreate_')) {
+                            loadCharacters();
+                        }
+
+                    } else if (data.status === 'error') {
+                        clearInterval(checkInterval);
+                        addLog(`❌ 任务失败: ${taskId}`);
+
+                        if (data.error) {
+                            addLog('错误:\n' + data.error);
+                        }
+
+                        if (statusElementId) {
+                            const el = document.getElementById(statusElementId);
+                            el.className = 'status error show';
+                            el.textContent = '❌ 失败: ' + (data.error || '未知错误');
+                        }
+
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        addLog(`⏱️ 任务超时: ${taskId}`);
+
+                        if (statusElementId) {
+                            const el = document.getElementById(statusElementId);
+                            el.className = 'status error show';
+                            el.textContent = '⏱️ 任务超时（5分钟）';
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('检查任务状态失败:', error);
+                }
+            }, 5000); // 每5秒检查一次
+        }
+
+        // 打开目录
+        async function openDirectory(path) {
+            try {
+                const response = await fetch(`/api/open-directory?path=${encodeURIComponent(path)}`);
+                const data = await response.json();
+                addLog(data.message || '✅ 已打开目录');
+            } catch (error) {
+                addLog('❌ 打开目录失败: ' + error.message);
+            }
+        }
+
+        // 添加日志
+        function addLog(message) {
+            const logEl = document.getElementById('logContent');
+            const time = new Date().toLocaleTimeString('zh-CN');
+            logEl.textContent = `[${time}] ${message}\n` + logEl.textContent;
+        }
+    </script>
+</body>
+</html>
