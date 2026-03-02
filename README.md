@@ -18,6 +18,16 @@
 
 ---
 
+## Recruiter Snapshot
+
+- Status: `active`
+- Positioning: AI media automation pipeline for short-form content production
+- Core Value: Convert long videos into platform-ready clips with copyright-risk control levels
+- Technical Scope: clip selection, transformation pipelines, scheduling, and batch processing
+- Stack: Python, OpenFang Agent OS, ffmpeg-based processing workflows
+- Delivery Signal: end-to-end automation from source URL to publish-ready assets
+- Last Reviewed: `2026-03-02`
+
 ## 📖 About / 关于项目
 
 ### 🎯 项目简介
