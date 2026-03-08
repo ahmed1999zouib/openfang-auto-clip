@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a concrete product or workflow improvement
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What operator or contributor problem are you trying to solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the workflow, API, CLI flag, or UI change you want.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Mention current workarounds or related tools.
+
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: How should we know this is done?
+      placeholder: A user can run one command and...

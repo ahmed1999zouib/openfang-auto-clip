@@ -30,6 +30,7 @@
 - 想先确认环境再跑重任务：执行 `./auto_clip.sh --doctor` 或 `./auto_clip.sh "URL" --dry-run`
 - 想准备版本发布：执行 `python3 scripts/release_prep.py v0.3.0 --allow-dirty`
 - 想知道版本标签怎么打：看 [`docs/VERSIONING.md`](docs/VERSIONING.md)
+- 想提 bug 或功能建议：直接用 GitHub Issue 模板
 
 ## Reality Check / 现状说明
 
