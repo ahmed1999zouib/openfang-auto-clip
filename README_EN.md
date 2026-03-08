@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/outhsics/openfang-auto-clip/actions/workflows/ci.yml/badge.svg)](https://github.com/outhsics/openfang-auto-clip/actions/workflows/ci.yml)
 [![OpenFang](https://img.shields.io/badge/OpenFang-0.1.9+-green.svg)](https://github.com/RightNow-AI/openfang)
 
 English | [简体中文](README.md)
@@ -15,6 +16,25 @@ English | [简体中文](README.md)
 </div>
 
 ---
+
+![OpenFang Auto Clip overview](docs/assets/readme-hero.svg)
+
+## 60-Second Evaluation
+
+- Start with [`examples/demo/README.md`](examples/demo/README.md)
+- Inspect the sample output payload in [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
+- Use the local UI guide in [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
+- Run `./auto_clip.sh --doctor` or `./auto_clip.sh "URL" --dry-run` before heavy jobs
+
+## Reality Check
+
+| Area | Status | Notes |
+|------|--------|-------|
+| Download, slicing, 9:16 export | ✅ Working | Local CLI flow is wired |
+| Level 1 visual remix | ✅ Working | FFmpeg-based and reproducible |
+| Local web manager | ✅ Working | Task history persists locally |
+| Level 2 / 3 | ⚠️ Scaffolded | Good roadmap items, not finished product claims |
+| Hosted SaaS / cloud API | ❌ Not offered | Current positioning is local-first |
 
 ## 📖 Project Overview
 
@@ -62,16 +82,13 @@ Democratize professional video editing and content transformation, making it acc
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/openfang-auto-clip.git
+git clone https://github.com/outhsics/openfang-auto-clip.git
 cd openfang-auto-clip
 
 # Run installation script
 ./scripts/install.sh
 
-# Initialize OpenFang
-openfang init
-
-# Start the daemon
+# Optional: start OpenFang if you use the Agent OS workflow
 openfang start &
 ```
 
@@ -82,19 +99,22 @@ openfang start &
 ./auto_clip.sh "https://www.youtube.com/watch?v=VIDEO_ID"
 
 # Enable copyright-safe transformation (Level 1)
-./auto_clip.sh "URL" --transform-style remix
+./auto_clip.sh "URL" --transform 1
 
-# Regenerate script (Level 2)
-./auto_clip.sh "URL" --transform-script new
+# Regenerate script flow scaffold (Level 2)
+./auto_clip.sh "URL" --transform 2
 
-# Complete recreation (Level 3)
-./auto_clip.sh "URL" --transform-complete
+# Complete recreation scaffold (Level 3)
+./auto_clip.sh "URL" --transform 3
 
 # Custom duration
 ./auto_clip.sh "URL" --duration 45
 
 # Batch processing
 cat video_list.txt | xargs -I {} ./auto_clip.sh {}
+
+# Run tests
+python3 -m unittest discover -s tests
 ```
 
 ---
@@ -359,8 +379,8 @@ Built with amazing open-source tools:
 
 ### Getting Help
 - 📖 [Documentation](docs/)
-- 💬 [Discussions](https://github.com/YOUR_USERNAME/openfang-auto-clip/discussions)
-- 🐛 [Bug Reports](https://github.com/YOUR_USERNAME/openfang-auto-clip/issues)
+- 💬 [Discussions](https://github.com/outhsics/openfang-auto-clip/discussions)
+- 🐛 [Bug Reports](https://github.com/outhsics/openfang-auto-clip/issues)
 - 📧 Email: support@example.com
 
 ### Community

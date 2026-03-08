@@ -10,7 +10,7 @@
 ### 方法2：手动启动
 ```bash
 source venv/bin/activate
-python web_manager.py
+python3 web_manager.py
 ```
 
 启动后浏览器会自动打开：http://localhost:5000
@@ -136,6 +136,12 @@ python web_manager.py
 - 开始/结束时间
 - 输出日志
 - 错误信息
+- 持久化状态文件：`~/.openfang/web_tasks.json`
+
+### 可迁移部署
+- 自动识别当前仓库目录，不再依赖硬编码绝对路径
+- 可通过 `OPENFANG_AUTO_CLIP_PROJECT_DIR` 覆盖项目目录
+- 可通过 `OPENFANG_OUTPUT_DIR` 覆盖输出目录
 
 ---
 
@@ -180,14 +186,14 @@ app.run(host='127.0.0.1', port=5001, debug=False)
 ### Flask未安装
 ```bash
 source venv/bin/activate
-pip install flask
+pip install -r requirements.txt
 ```
 
 ### 虚拟环境丢失
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install flask
+pip install -r requirements.txt
 ```
 
 ---

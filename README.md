@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/outhsics/openfang-auto-clip/actions/workflows/ci.yml/badge.svg)](https://github.com/outhsics/openfang-auto-clip/actions/workflows/ci.yml)
 [![OpenFang](https://img.shields.io/badge/OpenFang-0.1.9+-green.svg)](https://github.com/RightNow-AI/openfang)
 
 [English](README_EN.md) | 简体中文
@@ -17,6 +18,25 @@
 </div>
 
 ---
+
+![OpenFang Auto Clip overview](docs/assets/readme-hero.svg)
+
+## 60-Second Evaluation
+
+- 想快速判断项目是否值得试：先看 [`examples/demo/README.md`](examples/demo/README.md)
+- 想看输出长什么样：直接看 [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
+- 想要本地可视化操作：看 [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
+- 想先确认环境再跑重任务：执行 `./auto_clip.sh --doctor` 或 `./auto_clip.sh "URL" --dry-run`
+
+## Reality Check / 现状说明
+
+| Area | Today | Notes |
+|------|-------|-------|
+| 下载、切片、9:16 导出 | ✅ 可用 | 本地 CLI 路径已打通 |
+| Level 1 视觉转换 | ✅ 可用 | 基于 FFmpeg 的可复现处理 |
+| Web 管理界面 | ✅ 可用 | 本地服务，任务状态持久化 |
+| Level 2 / 3 | ⚠️ 脚手架阶段 | 适合 roadmap，不适合当作已完成商业能力宣传 |
+| 云端 SaaS / Hosted API | ❌ 不提供 | 当前定位是 local-first operator workflow |
 
 ## Recruiter Snapshot
 
@@ -350,10 +370,7 @@ cd openfang-auto-clip
 # 2. Install dependencies / 安装依赖
 ./scripts/install.sh
 
-# 3. Initialize OpenFang / 初始化 OpenFang
-openfang init
-
-# 4. Start the daemon / 启动服务
+# 3. Start OpenFang if needed / 如需 Agent OS 工作流则启动
 openfang start &
 ```
 
@@ -371,6 +388,9 @@ openfang start &
 
 # Batch processing / 批量处理
 cat video_list.txt | xargs -I {} ./auto_clip.sh {}
+
+# Run tests / 运行测试
+python3 -m unittest discover -s tests
 ```
 
 ### Output / 输出位置
@@ -727,8 +747,8 @@ This tool helps create original content. Users are responsible for ensuring thei
 ## 📞 Support & Community
 
 - 📖 [Documentation](docs/)
-- 💬 [Discussions](https://github.com/YOUR_USERNAME/openfang-auto-clip/discussions)
-- 🐛 [Issue Tracker](https://github.com/YOUR_USERNAME/openfang-auto-clip/issues)
+- 💬 [Discussions](https://github.com/outhsics/openfang-auto-clip/discussions)
+- 🐛 [Issue Tracker](https://github.com/outhsics/openfang-auto-clip/issues)
 - 📧 Email: support@example.com
 
 ---

@@ -14,6 +14,8 @@ echo ""
 # Detect OS
 OS="$(uname -s)"
 ARCH="$(uname -m)"
+OPENFANG_HOME="${HOME}/.openfang"
+VENV_DIR="${OPENFANG_HOME}/venv"
 
 echo "🖥️  Detected OS: $OS $ARCH"
 echo ""
@@ -50,8 +52,8 @@ echo "   ✅ $(openfang --version | head -1)"
 
 # Create virtual environment
 echo "📦 Creating Python virtual environment..."
-python3 -m venv ~/.openfang-auto-clip/venv
-source ~/.openfang-auto-clip/venv/bin/activate
+python3 -m venv "$VENV_DIR"
+source "$VENV_DIR/bin/activate"
 
 # Install Python dependencies
 echo "📚 Installing Python dependencies..."
@@ -60,18 +62,18 @@ pip install -r requirements.txt
 
 # Create directories
 echo "📁 Creating directories..."
-mkdir -p ~/.openfang-auto-clip/{downloads,clips,logs}
-mkdir -p ~/.openfang-auto-clip/styles
+mkdir -p "${OPENFANG_HOME}/"{downloads,clips,logs,styles}
+mkdir -p "${OPENFANG_HOME}/clips/downloads"
 
 # Initialize OpenFang
 echo "🔧 Initializing OpenFang..."
-if [ ! -f ~/.openfang/config.toml ]; then
+if [ ! -f "${OPENFANG_HOME}/config.toml" ]; then
     openfang init --quick
 fi
 
 # Copy default config
-if [ ! -f ~/.openfang-auto-clip/config.json ]; then
-    cp config/example_config.json ~/.openfang-auto-clip/config.json
+if [ ! -f "${OPENFANG_HOME}/auto_clip_config.json" ]; then
+    cp config/example_config.json "${OPENFANG_HOME}/auto_clip_config.json"
 fi
 
 echo ""
@@ -90,7 +92,7 @@ echo "   2. Process a video:"
 echo "      ./auto_clip.sh 'https://youtube.com/watch?v=VIDEO_ID'"
 echo ""
 echo "   3. View output:"
-echo "      open ~/.openfang-auto-clip/clips/"
+echo "      open ~/.openfang/clips/"
 echo ""
 echo "📚 Documentation:"
 echo "   • README.md - Overview and quick start"
@@ -98,6 +100,6 @@ echo "   • docs/INSTALLATION.md - Detailed installation guide"
 echo "   • docs/TRANSFORMATION.md - Copyright transformation guide"
 echo ""
 echo "💡 Need help?"
-echo "   • GitHub Issues: https://github.com/YOUR_USERNAME/openfang-auto-clip/issues"
-echo "   • Discussions: https://github.com/YOUR_USERNAME/openfang-auto-clip/discussions"
+echo "   • GitHub Issues: https://github.com/outhsics/openfang-auto-clip/issues"
+echo "   • Discussions: https://github.com/outhsics/openfang-auto-clip/discussions"
 echo ""

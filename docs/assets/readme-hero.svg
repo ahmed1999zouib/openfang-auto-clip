@@ -1,0 +1,57 @@
+<svg width="1200" height="560" viewBox="0 0 1200 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F4EA"/>
+      <stop offset="1" stop-color="#E2F0EA"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F6F6F1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="560" rx="32" fill="url(#bg)"/>
+  <circle cx="1070" cy="94" r="62" fill="#C64D37" fill-opacity="0.1"/>
+  <circle cx="130" cy="460" r="88" fill="#145C52" fill-opacity="0.08"/>
+
+  <text x="72" y="86" fill="#0F1720" font-family="Georgia, serif" font-size="38" font-weight="700">
+    OpenFang Auto Clip
+  </text>
+  <text x="72" y="126" fill="#374151" font-family="Verdana, sans-serif" font-size="20">
+    Local-first pipeline for turning long videos into reusable short clips with
+  </text>
+  <text x="72" y="154" fill="#374151" font-family="Verdana, sans-serif" font-size="20">
+    copyright-risk control levels, task history, and operator-friendly tooling.
+  </text>
+
+  <rect x="72" y="210" width="300" height="222" rx="24" fill="url(#card)" stroke="#D6D3C8" stroke-width="2"/>
+  <text x="100" y="258" fill="#9A3412" font-family="Verdana, sans-serif" font-size="16" font-weight="700">01 SOURCE</text>
+  <text x="100" y="308" fill="#111827" font-family="Georgia, serif" font-size="28" font-weight="700">Input URL</text>
+  <text x="100" y="348" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">YouTube or any supported link</text>
+  <text x="100" y="382" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">downloaded with yt-dlp</text>
+  <text x="100" y="416" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">metadata captured to report.json</text>
+
+  <rect x="450" y="176" width="300" height="254" rx="24" fill="#145C52" fill-opacity="0.96"/>
+  <text x="478" y="224" fill="#D5F1E9" font-family="Verdana, sans-serif" font-size="16" font-weight="700">02 TRANSFORM</text>
+  <text x="478" y="278" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700">Risk Control</text>
+  <text x="478" y="320" fill="#E6FFFA" font-family="Verdana, sans-serif" font-size="18">Level 1 works today</text>
+  <text x="478" y="352" fill="#E6FFFA" font-family="Verdana, sans-serif" font-size="18">Level 2 / 3 are scaffolded</text>
+  <text x="478" y="394" fill="#E6FFFA" font-family="Verdana, sans-serif" font-size="18">Web manager persists task history</text>
+
+  <rect x="828" y="210" width="300" height="222" rx="24" fill="url(#card)" stroke="#D6D3C8" stroke-width="2"/>
+  <text x="856" y="258" fill="#9A3412" font-family="Verdana, sans-serif" font-size="16" font-weight="700">03 OUTPUT</text>
+  <text x="856" y="308" fill="#111827" font-family="Georgia, serif" font-size="28" font-weight="700">Vertical Clips</text>
+  <text x="856" y="348" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">9:16 formatted MP4 clips</text>
+  <text x="856" y="382" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">timestamped output directories</text>
+  <text x="856" y="416" fill="#4B5563" font-family="Verdana, sans-serif" font-size="18">JSON report for downstream ops</text>
+
+  <path d="M372 322H430" stroke="#C64D37" stroke-width="8" stroke-linecap="round"/>
+  <path d="M750 322H808" stroke="#C64D37" stroke-width="8" stroke-linecap="round"/>
+  <path d="M414 296L438 322L414 348" stroke="#C64D37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M792 296L816 322L792 348" stroke="#C64D37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="72" y="470" width="1056" height="46" rx="23" fill="#0F1720"/>
+  <text x="104" y="500" fill="#F8FAFC" font-family="Verdana, sans-serif" font-size="18">
+    Honest positioning wins stars: show what is production-ready, show sample output, and keep the operator workflow local-first.
+  </text>
+</svg>

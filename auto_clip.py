@@ -14,6 +14,7 @@ import sys
 import json
 import subprocess
 import re
+import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -55,6 +56,147 @@ def load_config() -> dict:
         "transform_level": 1,  # Default to Level 1
         "openfang_api": "http://127.0.0.1:4200"
     }
+
+
+def command_exists(command: str) -> bool:
+    """Return whether a command is available on PATH."""
+    return shutil.which(command) is not None
+
+
+def build_doctor_report() -> dict:
+    """Collect a lightweight environment report."""
+    checks = [
+        {
+            "name": "python",
+            "status": "ok" if sys.version_info >= (3, 9) else "error",
+            "detail": sys.version.split()[0],
+            "required": True,
+        },
+        {
+            "name": "ffmpeg",
+            "status": "ok" if command_exists("ffmpeg") else "error",
+            "detail": shutil.which("ffmpeg") or "not found",
+            "required": True,
+        },
+        {
+            "name": "yt-dlp",
+            "status": "ok" if command_exists("yt-dlp") else "error",
+            "detail": shutil.which("yt-dlp") or "not found",
+            "required": True,
+        },
+        {
+            "name": "openfang",
+            "status": "ok" if command_exists("openfang") else "warn",
+            "detail": shutil.which("openfang") or "not found",
+            "required": False,
+        },
+        {
+            "name": "config",
+            "status": "ok" if CONFIG_FILE.exists() else "warn",
+            "detail": str(CONFIG_FILE),
+            "required": False,
+        },
+    ]
+
+    output_status = "ok"
+    try:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        output_status = "error"
+        output_detail = f"{OUTPUT_DIR} ({exc})"
+    else:
+        output_detail = str(OUTPUT_DIR)
+
+    checks.append(
+        {
+            "name": "output_dir",
+            "status": output_status,
+            "detail": output_detail,
+            "required": True,
+        }
+    )
+
+    return {
+        "created_at": datetime.now().isoformat(),
+        "checks": checks,
+    }
+
+
+def print_doctor_report(report: dict) -> None:
+    """Render the doctor report to stdout."""
+    print("=" * 70)
+    print("🩺 OpenFang Auto Clip Doctor")
+    print("=" * 70)
+
+    has_error = False
+    for check in report["checks"]:
+        if check["status"] == "ok":
+            marker = "✅"
+        elif check["status"] == "warn":
+            marker = "⚠️ "
+        else:
+            marker = "❌"
+            has_error = True
+
+        required = "required" if check["required"] else "optional"
+        print(f"{marker} {check['name']} [{required}]")
+        print(f"   {check['detail']}")
+
+    print()
+    if has_error:
+        print("❌ Environment check failed. Fix required items before processing videos.")
+    else:
+        print("✅ Environment looks ready.")
+
+
+def build_processing_plan(
+    url: str,
+    transform_level: int,
+    config: dict,
+    now: Optional[datetime] = None,
+) -> dict:
+    """Build a dry-run plan for the requested processing job."""
+    now = now or datetime.now()
+    timestamp = now.strftime("%Y%m%d_%H%M%S")
+    level = TransformLevel(transform_level)
+
+    return {
+        "url": url,
+        "transform_level": transform_level,
+        "transform_label": level.name.lower(),
+        "default_duration": config.get("default_duration", 60),
+        "target_platforms": config.get("target_platforms", ["tiktok"]),
+        "downloads_dir": str((OUTPUT_DIR / "downloads").resolve()),
+        "projected_output_dir": str((OUTPUT_DIR / "clips" / timestamp).resolve()),
+        "config_file": str(CONFIG_FILE.resolve()),
+        "created_at": now.isoformat(),
+    }
+
+
+def save_dry_run_plan(plan: dict) -> Path:
+    """Persist a dry-run plan for later inspection."""
+    dry_run_dir = OUTPUT_DIR / "dry_runs"
+    dry_run_dir.mkdir(parents=True, exist_ok=True)
+    plan_path = dry_run_dir / f"plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(plan_path, "w") as handle:
+        json.dump(plan, handle, indent=2)
+    return plan_path
+
+
+def print_dry_run_plan(plan: dict, plan_path: Path) -> None:
+    """Render a dry-run summary to stdout."""
+    print("=" * 70)
+    print("🧪 OpenFang Auto Clip Dry Run")
+    print("=" * 70)
+    print(f"URL: {plan['url']}")
+    print(f"Transform: Level {plan['transform_level']} ({plan['transform_label']})")
+    print(f"Clip duration: {plan['default_duration']} seconds")
+    print(f"Platforms: {', '.join(plan['target_platforms'])}")
+    print(f"Downloads dir: {plan['downloads_dir']}")
+    print(f"Projected output dir: {plan['projected_output_dir']}")
+    print(f"Config file: {plan['config_file']}")
+    print()
+    print(f"Plan saved to: {plan_path}")
 
 
 def download_video(url: str, output_dir: Path) -> dict:
@@ -585,12 +727,16 @@ For more information, see README.md or docs/TRANSFORMATION.md
         """
     )
 
-    parser.add_argument('url', help='Video URL to process')
+    parser.add_argument('url', nargs='?', help='Video URL to process')
     parser.add_argument('--duration', type=int, default=60,
                        help='Clip duration in seconds (default: 60)')
     parser.add_argument('--transform', type=int, choices=[0, 1, 2, 3], default=1,
                        help='Copyright transformation level (default: 1)')
     parser.add_argument('--config', help='Path to config file')
+    parser.add_argument('--dry-run', action='store_true',
+                       help='Validate inputs and write a processing plan without downloading media')
+    parser.add_argument('--doctor', action='store_true',
+                       help='Check local environment readiness and exit')
 
     args = parser.parse_args()
 
@@ -601,6 +747,20 @@ For more information, see README.md or docs/TRANSFORMATION.md
             config.update(json.load(f))
 
     config['default_duration'] = args.duration
+
+    if args.doctor:
+        report = build_doctor_report()
+        print_doctor_report(report)
+        sys.exit(1 if any(check["status"] == "error" for check in report["checks"]) else 0)
+
+    if not args.url:
+        parser.error("url is required unless --doctor is used")
+
+    if args.dry_run:
+        plan = build_processing_plan(args.url, args.transform, config)
+        plan_path = save_dry_run_plan(plan)
+        print_dry_run_plan(plan, plan_path)
+        sys.exit(0)
 
     # Process video
     result = process_video(args.url, args.transform, config)

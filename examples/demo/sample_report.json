@@ -1,0 +1,52 @@
+{
+  "video": {
+    "path": "/Users/demo/.openfang/clips/downloads/source_video.mp4",
+    "title": "How to repurpose long-form video into short clips",
+    "duration": 612,
+    "id": "demo-video-id",
+    "uploader": "Demo Channel",
+    "upload_date": "20260301"
+  },
+  "transformation": {
+    "level": 1,
+    "result": {
+      "status": "success",
+      "output_path": "/Users/demo/.openfang/clips/downloads/source_video_transformed.mp4",
+      "level": 1,
+      "file_size_mb": 184.2,
+      "transformations": [
+        "horizontal_flip",
+        "zoom_crop",
+        "color_grading",
+        "speed_1.15x",
+        "rotation_1.5deg",
+        "vignette",
+        "noise_overlay",
+        "pitch_shift"
+      ],
+      "message": "Enhanced visual remix applied successfully"
+    }
+  },
+  "clips": [
+    {
+      "path": "/Users/demo/.openfang/clips/20260307_120000/clip_01_0000s-0045s.mp4",
+      "start": 0,
+      "end": 45,
+      "duration": 45,
+      "size_mb": 18.3,
+      "reason": "Auto-clip 1",
+      "score": 5
+    },
+    {
+      "path": "/Users/demo/.openfang/clips/20260307_120000/clip_02_0045s-0090s.mp4",
+      "start": 45,
+      "end": 90,
+      "duration": 45,
+      "size_mb": 17.9,
+      "reason": "Auto-clip 2",
+      "score": 5
+    }
+  ],
+  "created_at": "2026-03-07T12:00:00",
+  "output_dir": "/Users/demo/.openfang/clips/20260307_120000"
+}

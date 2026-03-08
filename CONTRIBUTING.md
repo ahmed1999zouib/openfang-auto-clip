@@ -209,7 +209,7 @@ def test_transform_level_1():
 
 ```bash
 # Clone fork
-git clone https://github.com/YOUR_USERNAME/openfang-auto-clip.git
+git clone https://github.com/outhsics/openfang-auto-clip.git
 cd openfang-auto-clip
 
 # Create virtual environment
@@ -268,8 +268,8 @@ By contributing, you agree that your contributions will be licensed under the MI
 ## ❓ Questions?
 
 - Check [Documentation](docs/)
-- Search [Issues](https://github.com/YOUR_USERNAME/openfang-auto-clip/issues)
-- Start a [Discussion](https://github.com/YOUR_USERNAME/openfang-auto-clip/discussions)
+- Search [Issues](https://github.com/outhsics/openfang-auto-clip/issues)
+- Start a [Discussion](https://github.com/outhsics/openfang-auto-clip/discussions)
 - Email: dev@example.com
 
 ---

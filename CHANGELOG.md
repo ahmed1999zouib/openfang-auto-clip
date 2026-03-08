@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- GitHub Actions CI for unit tests and Python compile checks
+- Development dependency manifest (`requirements-dev.txt`)
+- Installation guide at `docs/INSTALLATION.md`
+- Demo evaluation assets in `examples/demo/` and `docs/assets/readme-hero.svg`
+- CLI readiness commands: `--doctor` and `--dry-run`
+
+### Changed
+- Installer now uses the same `~/.openfang` paths as the runtime
+- Quick start documentation now matches the actual CLI entrypoints
+
 ### Planned
 - Level 2 script regeneration
 - Level 3 complete recreation
