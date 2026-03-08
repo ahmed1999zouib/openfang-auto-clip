@@ -29,6 +29,7 @@ English | [简体中文](README.md)
 - Prepare release notes with `python3 scripts/release_prep.py v0.3.0 --allow-dirty`
 - See [`docs/VERSIONING.md`](docs/VERSIONING.md) for release tags and version semantics
 - Use the GitHub issue templates for bugs and feature requests
+- Generate launch copy with `python3 scripts/generate_launch_kit.py --report examples/benchmark/sample_benchmark_report.json`
 
 ## Reality Check
 

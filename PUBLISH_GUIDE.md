@@ -46,6 +46,13 @@ This will:
 
 Use `--allow-dirty` only when you're iterating locally and want to preview release notes before the final commit.
 
+If you already have a benchmark report, generate launch copy and an asset checklist:
+
+```bash
+python3 scripts/generate_launch_kit.py \
+  --report examples/benchmark/sample_benchmark_report.json
+```
+
 ### Step 1: Initialize Git Repository
 
 ```bash
