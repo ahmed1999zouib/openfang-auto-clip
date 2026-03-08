@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CLI readiness commands: `--doctor` and `--dry-run`
 - `scripts/release_prep.py` for validated release-note generation
 - Synthetic benchmark workflow in `scripts/run_demo_benchmark.py`
+- Automated GitHub tag release workflow and versioning guide
 
 ### Changed
 - Installer now uses the same `~/.openfang` paths as the runtime

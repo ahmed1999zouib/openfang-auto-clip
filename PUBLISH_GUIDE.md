@@ -42,6 +42,7 @@ This will:
 - verify the expected release files exist
 - run the unit tests unless `--skip-tests` is passed
 - generate `dist/releases/v0.3.0/release_notes.md`
+- pair with [`docs/VERSIONING.md`](docs/VERSIONING.md) so the tag format stays consistent
 
 Use `--allow-dirty` only when you're iterating locally and want to preview release notes before the final commit.
 
@@ -101,6 +102,15 @@ git push -u origin main
 git branch -M main
 git push -u origin main
 ```
+
+### Step 7: Create and Push a Version Tag
+
+```bash
+git tag v0.3.0
+git push origin v0.3.0
+```
+
+Pushing a `v*.*.*` tag triggers `.github/workflows/release.yml`, which runs tests and drafts the GitHub release automatically.
 
 ---
 
