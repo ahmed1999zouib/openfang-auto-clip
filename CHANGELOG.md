@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Installation guide at `docs/INSTALLATION.md`
 - Demo evaluation assets in `examples/demo/` and `docs/assets/readme-hero.svg`
 - CLI readiness commands: `--doctor` and `--dry-run`
+- `scripts/release_prep.py` for validated release-note generation
 
 ### Changed
 - Installer now uses the same `~/.openfang` paths as the runtime

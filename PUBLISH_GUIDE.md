@@ -30,6 +30,21 @@ Complete guide to publish OpenFang Auto Clip to GitHub.
 
 ## 🚀 Publishing Steps
 
+### Fast Path
+
+Before drafting a GitHub release manually, generate a validated release bundle:
+
+```bash
+python3 scripts/release_prep.py v0.3.0 --allow-dirty
+```
+
+This will:
+- verify the expected release files exist
+- run the unit tests unless `--skip-tests` is passed
+- generate `dist/releases/v0.3.0/release_notes.md`
+
+Use `--allow-dirty` only when you're iterating locally and want to preview release notes before the final commit.
+
 ### Step 1: Initialize Git Repository
 
 ```bash

@@ -27,6 +27,7 @@
 - 想看输出长什么样：直接看 [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
 - 想要本地可视化操作：看 [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
 - 想先确认环境再跑重任务：执行 `./auto_clip.sh --doctor` 或 `./auto_clip.sh "URL" --dry-run`
+- 想准备版本发布：执行 `python3 scripts/release_prep.py v0.3.0 --allow-dirty`
 
 ## Reality Check / 现状说明
 
