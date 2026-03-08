@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Synthetic benchmark workflow in `scripts/run_demo_benchmark.py`
 - Automated GitHub tag release workflow and versioning guide
 - GitHub issue templates and pull request template
+- Benchmark storyboard generation for shareable visual output
 
 ### Changed
 - Installer now uses the same `~/.openfang` paths as the runtime

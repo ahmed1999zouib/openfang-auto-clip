@@ -38,6 +38,7 @@ English | [简体中文](README.md)
 | Level 1 visual remix | ✅ Working | FFmpeg-based and reproducible |
 | Local web manager | ✅ Working | Task history persists locally |
 | Synthetic benchmark demo | ✅ Working | Reproducible without external media |
+| Shareable storyboard output | ✅ Working | Benchmark run produces a reusable visual summary |
 | Level 2 / 3 | ⚠️ Scaffolded | Good roadmap items, not finished product claims |
 | Hosted SaaS / cloud API | ❌ Not offered | Current positioning is local-first |
 

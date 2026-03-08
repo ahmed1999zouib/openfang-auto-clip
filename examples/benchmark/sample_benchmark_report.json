@@ -16,6 +16,7 @@
     "processed_video_path": "tmp/demo-benchmark/synthetic_source_transformed.mp4",
     "clips_dir": "tmp/demo-benchmark/clips",
     "preview_path": "tmp/demo-benchmark/preview.png",
+    "storyboard_path": "tmp/demo-benchmark/storyboard.png",
     "clip_count": 3
   },
   "transform_result": {

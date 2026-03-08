@@ -8,6 +8,7 @@ import json
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from time import perf_counter
 
@@ -96,6 +97,51 @@ def extract_preview_frame(video_path: Path, output_path: Path) -> None:
         raise RuntimeError(f"failed to extract preview frame: {result.stderr[:300]}")
 
 
+def extract_clip_previews(clip_paths: list[Path], output_dir: Path) -> list[Path]:
+    """Extract one preview frame per clip for storyboard generation."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    preview_paths = []
+
+    for index, clip_path in enumerate(clip_paths, start=1):
+        preview_path = output_dir / f"clip_preview_{index:02d}.png"
+        extract_preview_frame(clip_path, preview_path)
+        if preview_path.exists():
+            preview_paths.append(preview_path)
+
+    return preview_paths
+
+
+def create_storyboard(preview_paths: list[Path], output_path: Path) -> None:
+    """Create a horizontal contact sheet from clip preview frames."""
+    if not preview_paths:
+        return
+
+    command = ["ffmpeg"]
+    for preview_path in preview_paths:
+        command.extend(["-i", str(preview_path)])
+
+    filter_parts = [f"[{index}:v]scale=320:-1[v{index}]" for index in range(len(preview_paths))]
+    inputs = "".join(f"[v{index}]" for index in range(len(preview_paths)))
+    filter_parts.append(f"{inputs}hstack=inputs={len(preview_paths)}[out]")
+
+    command.extend(
+        [
+            "-filter_complex",
+            ";".join(filter_parts),
+            "-map",
+            "[out]",
+            "-frames:v",
+            "1",
+            "-y",
+            str(output_path),
+        ]
+    )
+
+    result = subprocess.run(command, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(f"failed to create storyboard: {result.stderr[:300]}")
+
+
 def run_benchmark(
     output_dir: Path,
     duration: int,
@@ -135,8 +181,15 @@ def run_benchmark(
     clip_seconds = round(perf_counter() - clips_started, 3)
 
     preview_path = benchmark_dir / "preview.png"
+    storyboard_path = benchmark_dir / "storyboard.png"
     if created_clips:
         extract_preview_frame(Path(created_clips[0]["path"]), preview_path)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            preview_frames = extract_clip_previews(
+                [Path(clip["path"]) for clip in created_clips[:4]],
+                Path(tmp_dir),
+            )
+            create_storyboard(preview_frames, storyboard_path)
 
     report = {
         "benchmark": {
@@ -156,6 +209,7 @@ def run_benchmark(
             "processed_video_path": str(video_path),
             "clips_dir": str(clips_dir),
             "preview_path": str(preview_path) if preview_path.exists() else None,
+            "storyboard_path": str(storyboard_path) if storyboard_path.exists() else None,
             "clip_count": len(created_clips),
         },
         "transform_result": transform_summary,
@@ -187,6 +241,8 @@ def main() -> int:
     print("✅ Demo benchmark complete")
     print(f"   Clips: {report['artifacts']['clip_count']}")
     print(f"   Report: {Path(report['artifacts']['clips_dir']).parent / 'benchmark_report.json'}")
+    if report["artifacts"]["storyboard_path"]:
+        print(f"   Storyboard: {report['artifacts']['storyboard_path']}")
     return 0
 
 

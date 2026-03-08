@@ -40,6 +40,7 @@
 | Level 1 视觉转换 | ✅ 可用 | 基于 FFmpeg 的可复现处理 |
 | Web 管理界面 | ✅ 可用 | 本地服务，任务状态持久化 |
 | Synthetic benchmark demo | ✅ 可用 | 无需外部素材即可复现示例链路 |
+| Shareable storyboard output | ✅ 可用 | benchmark 跑完直接生成传播图 |
 | Level 2 / 3 | ⚠️ 脚手架阶段 | 适合 roadmap，不适合当作已完成商业能力宣传 |
 | 云端 SaaS / Hosted API | ❌ 不提供 | 当前定位是 local-first operator workflow |
 
