@@ -514,6 +514,7 @@ def create_clips(video_path: str, highlights: List[dict], output_dir: Path, conf
         List of created clips info
     """
     print(f"\n🎬 Creating {len(highlights)} clips...")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     created_clips = []
     target_platforms = config.get('target_platforms', ['tiktok'])

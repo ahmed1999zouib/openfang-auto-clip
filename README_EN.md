@@ -22,6 +22,7 @@ English | [简体中文](README.md)
 ## 60-Second Evaluation
 
 - Start with [`examples/demo/README.md`](examples/demo/README.md)
+- Run the repo-safe benchmark in [`examples/benchmark/README.md`](examples/benchmark/README.md)
 - Inspect the sample output payload in [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
 - Use the local UI guide in [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
 - Run `./auto_clip.sh --doctor` or `./auto_clip.sh "URL" --dry-run` before heavy jobs
@@ -34,6 +35,7 @@ English | [简体中文](README.md)
 | Download, slicing, 9:16 export | ✅ Working | Local CLI flow is wired |
 | Level 1 visual remix | ✅ Working | FFmpeg-based and reproducible |
 | Local web manager | ✅ Working | Task history persists locally |
+| Synthetic benchmark demo | ✅ Working | Reproducible without external media |
 | Level 2 / 3 | ⚠️ Scaffolded | Good roadmap items, not finished product claims |
 | Hosted SaaS / cloud API | ❌ Not offered | Current positioning is local-first |
 

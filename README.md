@@ -24,6 +24,7 @@
 ## 60-Second Evaluation
 
 - 想快速判断项目是否值得试：先看 [`examples/demo/README.md`](examples/demo/README.md)
+- 想直接跑一个不依赖外部视频的基准演示：看 [`examples/benchmark/README.md`](examples/benchmark/README.md)
 - 想看输出长什么样：直接看 [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
 - 想要本地可视化操作：看 [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
 - 想先确认环境再跑重任务：执行 `./auto_clip.sh --doctor` 或 `./auto_clip.sh "URL" --dry-run`
@@ -36,6 +37,7 @@
 | 下载、切片、9:16 导出 | ✅ 可用 | 本地 CLI 路径已打通 |
 | Level 1 视觉转换 | ✅ 可用 | 基于 FFmpeg 的可复现处理 |
 | Web 管理界面 | ✅ 可用 | 本地服务，任务状态持久化 |
+| Synthetic benchmark demo | ✅ 可用 | 无需外部素材即可复现示例链路 |
 | Level 2 / 3 | ⚠️ 脚手架阶段 | 适合 roadmap，不适合当作已完成商业能力宣传 |
 | 云端 SaaS / Hosted API | ❌ 不提供 | 当前定位是 local-first operator workflow |
 

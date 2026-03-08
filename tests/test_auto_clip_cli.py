@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 from unittest import mock
+from types import SimpleNamespace
 
 import auto_clip
 
@@ -40,6 +41,28 @@ class AutoClipCliTests(unittest.TestCase):
         self.assertEqual(statuses["ffmpeg"], "ok")
         self.assertEqual(statuses["yt-dlp"], "error")
         self.assertIn(statuses["openfang"], {"warn", "ok"})
+
+    def test_create_clips_creates_output_directory(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            source_path = tmp_path / "source.mp4"
+            source_path.write_bytes(b"source")
+            output_dir = tmp_path / "nested" / "clips"
+
+            def fake_run(command, capture_output=True, text=True):
+                Path(command[-1]).write_bytes(b"x" * 2048)
+                return SimpleNamespace(returncode=0, stderr="")
+
+            with mock.patch.object(auto_clip.subprocess, "run", side_effect=fake_run):
+                clips = auto_clip.create_clips(
+                    str(source_path),
+                    [{"start": 0, "end": 5, "reason": "demo", "score": 5}],
+                    output_dir,
+                    {"target_platforms": ["tiktok"]},
+                )
+
+            self.assertEqual(len(clips), 1)
+            self.assertTrue(output_dir.exists())
 
 
 if __name__ == "__main__":

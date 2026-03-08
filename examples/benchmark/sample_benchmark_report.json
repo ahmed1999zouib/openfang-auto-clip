@@ -1,0 +1,49 @@
+{
+  "benchmark": {
+    "duration_seconds": 18,
+    "segment_duration": 6,
+    "transform_level": 1,
+    "created_at": "2026-03-08T21:10:00"
+  },
+  "timings": {
+    "synthetic_source_generation_seconds": 1.148,
+    "transformation_seconds": 2.406,
+    "clip_creation_seconds": 1.887,
+    "total_seconds": 5.441
+  },
+  "artifacts": {
+    "source_path": "tmp/demo-benchmark/synthetic_source.mp4",
+    "processed_video_path": "tmp/demo-benchmark/synthetic_source_transformed.mp4",
+    "clips_dir": "tmp/demo-benchmark/clips",
+    "preview_path": "tmp/demo-benchmark/preview.png",
+    "clip_count": 3
+  },
+  "transform_result": {
+    "status": "success",
+    "output_path": "tmp/demo-benchmark/synthetic_source_transformed.mp4",
+    "level": 1,
+    "file_size_mb": 2.9,
+    "transformations": [
+      "horizontal_flip",
+      "zoom_crop",
+      "color_grading",
+      "speed_1.15x",
+      "rotation_1.5deg",
+      "vignette",
+      "noise_overlay",
+      "pitch_shift"
+    ],
+    "message": "Enhanced visual remix applied successfully"
+  },
+  "clips": [
+    {
+      "path": "tmp/demo-benchmark/clips/clip_01_0000s-0006s.mp4",
+      "start": 0,
+      "end": 6,
+      "duration": 6,
+      "size_mb": 1.4,
+      "reason": "Benchmark clip 1",
+      "score": 5
+    }
+  ]
+}
