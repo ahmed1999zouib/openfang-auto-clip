@@ -23,13 +23,14 @@
 
 ## 60-Second Evaluation
 
-- 想快速判断项目是否值得试：先看 [`examples/demo/README.md`](examples/demo/README.md)
-- 想直接跑一个不依赖外部视频的基准演示：看 [`examples/benchmark/README.md`](examples/benchmark/README.md)
+- 想先看完整中英文文档地图：看 [`DOCUMENTATION_ZH.md`](DOCUMENTATION_ZH.md)
+- 想快速判断项目是否值得试：先看 [`examples/demo/README_ZH.md`](examples/demo/README_ZH.md)
+- 想直接跑一个不依赖外部视频的基准演示：看 [`examples/benchmark/README_ZH.md`](examples/benchmark/README_ZH.md)
 - 想看输出长什么样：直接看 [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
 - 想要本地可视化操作：看 [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
 - 想先确认环境再跑重任务：执行 `./auto_clip.sh --doctor` 或 `./auto_clip.sh "URL" --dry-run`
 - 想准备版本发布：执行 `python3 scripts/release_prep.py v0.3.0 --allow-dirty`
-- 想知道版本标签怎么打：看 [`docs/VERSIONING.md`](docs/VERSIONING.md)
+- 想知道版本标签怎么打：看 [`docs/VERSIONING_ZH.md`](docs/VERSIONING_ZH.md)
 - 想提 bug 或功能建议：直接用 GitHub Issue 模板
 - 想生成发布文案：执行 `python3 scripts/generate_launch_kit.py --report examples/benchmark/sample_benchmark_report.json`
 

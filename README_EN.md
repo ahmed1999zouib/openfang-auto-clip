@@ -21,10 +21,11 @@ English | [简体中文](README.md)
 
 ## 60-Second Evaluation
 
+- Start with the bilingual docs map in [`DOCUMENTATION.md`](DOCUMENTATION.md)
 - Start with [`examples/demo/README.md`](examples/demo/README.md)
 - Run the repo-safe benchmark in [`examples/benchmark/README.md`](examples/benchmark/README.md)
 - Inspect the sample output payload in [`examples/demo/sample_report.json`](examples/demo/sample_report.json)
-- Use the local UI guide in [`WEB_MANAGER_README.md`](WEB_MANAGER_README.md)
+- Use the local UI guide in [`WEB_MANAGER_README_EN.md`](WEB_MANAGER_README_EN.md)
 - Run `./auto_clip.sh --doctor` or `./auto_clip.sh "URL" --dry-run` before heavy jobs
 - Prepare release notes with `python3 scripts/release_prep.py v0.3.0 --allow-dirty`
 - See [`docs/VERSIONING.md`](docs/VERSIONING.md) for release tags and version semantics

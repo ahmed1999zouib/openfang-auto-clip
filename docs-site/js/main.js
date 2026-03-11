@@ -1,90 +1,57 @@
-// OpenFang Auto Clip - Website JavaScript
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Copy code functionality
-function copyCode(button) {
-    const codeBlock = button.parentElement;
-    const code = codeBlock.querySelector('code').textContent;
-
-    navigator.clipboard.writeText(code).then(() => {
-        const originalText = button.textContent;
-        button.textContent = 'Copied!';
-        setTimeout(() => {
-            button.textContent = originalText;
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy:', err);
-    });
-}
-
-// Navbar scroll effect
-let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
-    } else {
-        navbar.style.boxShadow = 'none';
+const revealObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+            }
+        });
+    },
+    {
+        threshold: 0.12,
     }
+);
 
-    lastScroll = currentScroll;
+document.querySelectorAll(".reveal").forEach((element) => {
+    revealObserver.observe(element);
 });
 
-// Animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+document.querySelectorAll("[data-copy-target]").forEach((button) => {
+    button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target) {
+            return;
+        }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+        try {
+            await navigator.clipboard.writeText(target.textContent);
+            const originalText = button.textContent;
+            button.textContent = "Copied";
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 1400);
+        } catch (error) {
+            console.error("Failed to copy command", error);
         }
     });
-}, observerOptions);
-
-// Observe all cards
-document.querySelectorAll('.feature-card, .level-card, .doc-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
 });
 
-// GitHub stars counter (placeholder)
-function updateGitHubStars() {
-    // This would fetch actual stars from GitHub API
-    // For now, it's a placeholder
-    const starButtons = document.querySelectorAll('.btn-github');
-    starButtons.forEach(btn => {
-        // btn.textContent = '⭐ 100+';
-    });
+async function updateRepositorySignal() {
+    try {
+        const response = await fetch("https://api.github.com/repos/outhsics/openfang-auto-clip");
+        if (!response.ok) {
+            throw new Error(`GitHub API responded with ${response.status}`);
+        }
+
+        const data = await response.json();
+        document.getElementById("starCount").textContent = data.stargazers_count;
+        document.getElementById("forkCount").textContent = data.forks_count;
+        document.getElementById("updatedAt").textContent = new Date(data.updated_at).toLocaleDateString("en-CA");
+    } catch (error) {
+        console.error("Failed to load repository signal", error);
+        document.getElementById("starCount").textContent = "GitHub";
+        document.getElementById("forkCount").textContent = "signal";
+        document.getElementById("updatedAt").textContent = "live";
+    }
 }
 
-// Call on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateGitHubStars();
-});
-
-// Console easter egg
-console.log('%c🎬 OpenFang Auto Clip', 'font-size: 24px; font-weight: bold;');
-console.log('%cCopyright-Safe AI Video Editing', 'font-size: 14px;');
-console.log('%chttps://github.com/YOUR_USERNAME/openfang-auto-clip', 'color: #FF6B6B;');
+updateRepositorySignal();

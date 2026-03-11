@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenFang Auto Clip | Local-First Video Repurposing</title>
-    <meta name="description" content="Local-first video repurposing with reproducible benchmarks, storyboard output, launch-kit generation, and automated tagged releases.">
+    <title>OpenFang Auto Clip | 本地优先的视频切条流水线</title>
+    <meta name="description" content="本地优先的视频二次分发项目，提供可复现 benchmark、storyboard 产物、launch kit 生成与 tag release 自动化。">
     <meta property="og:title" content="OpenFang Auto Clip">
-    <meta property="og:description" content="Turn long videos into platform-ready short clips with a local-first workflow, benchmark proof, and release automation.">
+    <meta property="og:description" content="把长视频转成可复用短视频，强调本地优先、可复现 benchmark 与发布自动化。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://outhsics.github.io/openfang-auto-clip/">
+    <meta property="og:url" content="https://outhsics.github.io/openfang-auto-clip/zh/">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316211d'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='26' fill='%23f5efe3'%3EOF%3C/text%3E%3C/svg%3E">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="page-shell">
@@ -19,17 +19,17 @@
                 <span class="brand-mark">OF</span>
                 <span class="brand-text">
                     <strong>OpenFang Auto Clip</strong>
-                    <small>Local-first short-form pipeline</small>
+                    <small>本地优先的短视频切条流水线</small>
                 </span>
             </a>
             <nav class="nav-links" aria-label="Primary">
-                <a href="#proof">Proof</a>
-                <a href="#workflow">Workflow</a>
-                <a href="#ship">Ship</a>
-                <a href="#docs">Docs</a>
+                <a href="#proof">证据</a>
+                <a href="#workflow">流程</a>
+                <a href="#ship">发布</a>
+                <a href="#docs">文档</a>
                 <span class="lang-switch" aria-label="Language switch">
-                    <a class="lang-link is-active" href="./">EN</a>
-                    <a class="lang-link" href="zh/">中文</a>
+                    <a class="lang-link" href="../">EN</a>
+                    <a class="lang-link is-active" href="./">中文</a>
                 </span>
                 <a class="nav-cta" href="https://github.com/outhsics/openfang-auto-clip">GitHub</a>
             </nav>
@@ -38,32 +38,32 @@
         <main id="top">
             <section class="hero reveal">
                 <div class="hero-copy">
-                    <p class="eyebrow">Video repurposing without fake SaaS promises</p>
-                    <h1>Show the pipeline. Show the benchmark. Show the assets.</h1>
+                    <p class="eyebrow">先展示流程，再展示 benchmark，再展示产物</p>
+                    <h1>不要空谈产品愿景，让仓库自己证明能力。</h1>
                     <p class="hero-text">
-                        OpenFang Auto Clip is a local-first project for turning long videos into reusable short clips.
-                        The repo now ships a reproducible benchmark, storyboard output, launch-kit generation,
-                        and tagged-release automation so visitors can evaluate the workflow instead of guessing.
+                        OpenFang Auto Clip 是一个本地优先的视频二次分发项目，用来把长视频转成可复用的短视频内容。
+                        现在仓库已经包含可复现 benchmark、storyboard 图片输出、launch kit 生成器，以及 tag release 自动化，
+                        让访客可以直接验证链路，而不是靠 README 想象。
                     </p>
                     <div class="hero-actions">
-                        <a class="button button-primary" href="https://github.com/outhsics/openfang-auto-clip">Open Repository</a>
-                        <a class="button button-secondary" href="#workflow">Run the Benchmark</a>
+                        <a class="button button-primary" href="https://github.com/outhsics/openfang-auto-clip">打开仓库</a>
+                        <a class="button button-secondary" href="#workflow">运行 Benchmark</a>
                     </div>
                     <div class="signal-row">
                         <div class="signal-pill">
-                            <span class="signal-label">What works today</span>
-                            <span class="signal-value">CLI, Level 1, benchmark, storyboard, release flow</span>
+                            <span class="signal-label">当前已可用</span>
+                            <span class="signal-value">CLI、Level 1、benchmark、storyboard、release flow</span>
                         </div>
                         <div class="signal-pill">
-                            <span class="signal-label">Reality check</span>
-                            <span class="signal-value">Level 2 / 3 remain scaffolded, not shipped product claims</span>
+                            <span class="signal-label">现状边界</span>
+                            <span class="signal-value">Level 2 / 3 仍是脚手架阶段，不应当宣传成已交付能力</span>
                         </div>
                     </div>
                 </div>
 
                 <aside class="hero-panel">
                     <div class="status-card">
-                        <p class="status-heading">Repository signal</p>
+                        <p class="status-heading">仓库信号</p>
                         <div class="stat-grid">
                             <article>
                                 <span class="stat-label">Stars</span>
@@ -74,12 +74,12 @@
                                 <strong id="forkCount">loading</strong>
                             </article>
                             <article>
-                                <span class="stat-label">Updated</span>
+                                <span class="stat-label">最近更新</span>
                                 <strong id="updatedAt">loading</strong>
                             </article>
                             <article>
-                                <span class="stat-label">Mode</span>
-                                <strong>Local-first</strong>
+                                <span class="stat-label">运行方式</span>
+                                <strong>本地优先</strong>
                             </article>
                         </div>
                     </div>
@@ -98,55 +98,55 @@ python3 scripts/release_prep.py v0.3.0 --allow-dirty</code></pre>
 
             <section id="proof" class="proof reveal">
                 <div class="section-heading">
-                    <p class="kicker">Proof before pitch</p>
-                    <h2>What the repo can demonstrate right now</h2>
+                    <p class="kicker">先有证据，再讲故事</p>
+                    <h2>这个仓库现在能真实证明什么</h2>
                 </div>
                 <div class="proof-grid">
                     <article class="proof-card accent-rust">
-                        <h3>Synthetic benchmark</h3>
-                        <p>One command generates a safe input video, applies Level 1, cuts clips, and writes `benchmark_report.json`.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/examples/benchmark/README.md">Open benchmark README</a>
+                        <h3>合成 Benchmark</h3>
+                        <p>一条命令生成安全输入视频、执行 Level 1、切出短视频，并产出 `benchmark_report.json`。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/examples/benchmark/README.md">查看 benchmark 说明</a>
                     </article>
                     <article class="proof-card accent-teal">
-                        <h3>Storyboard output</h3>
-                        <p>Benchmark runs now generate `storyboard.png`, giving you a shareable visual summary for releases, issues, and launch posts.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/scripts/run_demo_benchmark.py">View generator</a>
+                        <h3>Storyboard 输出</h3>
+                        <p>benchmark 现在会生成 `storyboard.png`，可直接用于 Release、Issue 和社媒发布。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/scripts/run_demo_benchmark.py">查看生成脚本</a>
                     </article>
                     <article class="proof-card accent-ink">
-                        <h3>Launch-kit generation</h3>
-                        <p>A report can become launch copy in one step, which keeps outreach aligned with the benchmark instead of vague claims.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/scripts/generate_launch_kit.py">View launch-kit script</a>
+                        <h3>Launch Kit 生成</h3>
+                        <p>一份 benchmark report 可以直接生成发布文案，避免对外传播和仓库现状脱节。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/scripts/generate_launch_kit.py">查看 launch kit 脚本</a>
                     </article>
                     <article class="proof-card accent-sand">
-                        <h3>Tagged releases</h3>
-                        <p>Version tags trigger tests, release-note generation, and GitHub Release creation through the repo workflow.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/.github/workflows/release.yml">View release workflow</a>
+                        <h3>Tag Release 自动化</h3>
+                        <p>版本 tag 会触发测试、release note 生成和 GitHub Release 创建，不再依赖纯手工发布。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/.github/workflows/release.yml">查看 release workflow</a>
                     </article>
                 </div>
             </section>
 
             <section class="reality reveal">
                 <div class="section-heading">
-                    <p class="kicker">Reality check</p>
-                    <h2>Ship the truth, not the dream</h2>
+                    <p class="kicker">边界清晰，信任更高</p>
+                    <h2>先讲清楚已交付能力，再谈路线图</h2>
                 </div>
                 <div class="reality-grid">
                     <article class="truth-card truth-yes">
-                        <h3>Working now</h3>
+                        <h3>今天就能用的部分</h3>
                         <ul>
-                            <li>Download, slice, and export vertical clips</li>
-                            <li>Level 1 visual remix through FFmpeg</li>
-                            <li>Local web manager with persisted task history</li>
-                            <li>Benchmark, storyboard, release, and launch-kit tooling</li>
+                            <li>下载、切片并导出竖屏短视频</li>
+                            <li>基于 FFmpeg 的 Level 1 视觉转换</li>
+                            <li>带持久化任务记录的本地 Web 管理器</li>
+                            <li>benchmark、storyboard、release、launch kit 工具链</li>
                         </ul>
                     </article>
                     <article class="truth-card truth-wip">
-                        <h3>Still in progress</h3>
+                        <h3>仍在推进中的部分</h3>
                         <ul>
-                            <li>Level 2 script regeneration is scaffolded</li>
-                            <li>Level 3 complete recreation is roadmap material</li>
-                            <li>No hosted cloud API or managed service is offered</li>
-                            <li>Commercial trust still depends on clearer demos and case studies</li>
+                            <li>Level 2 脚本重写仍是脚手架</li>
+                            <li>Level 3 完全重制仍属于 roadmap</li>
+                            <li>当前不提供托管云 API 或 SaaS</li>
+                            <li>商业级信任还需要更强的 demo 和案例</li>
                         </ul>
                     </article>
                 </div>
@@ -154,100 +154,100 @@ python3 scripts/release_prep.py v0.3.0 --allow-dirty</code></pre>
 
             <section id="workflow" class="workflow reveal">
                 <div class="section-heading">
-                    <p class="kicker">Workflow</p>
-                    <h2>Three commands to evaluate the project</h2>
+                    <p class="kicker">快速评估流程</p>
+                    <h2>三条命令就能判断项目值不值得试</h2>
                 </div>
                 <div class="command-grid">
                     <article class="command-card">
-                        <p class="command-step">1. Environment</p>
+                        <p class="command-step">1. 环境检查</p>
                         <div class="command-block">
                             <code id="cmd-doctor">./auto_clip.sh --doctor</code>
                             <button data-copy-target="cmd-doctor">Copy</button>
                         </div>
-                        <p>Confirms Python, ffmpeg, yt-dlp, config path, and output directory readiness.</p>
+                        <p>确认 Python、ffmpeg、yt-dlp、配置路径和输出目录是否就绪。</p>
                     </article>
                     <article class="command-card">
-                        <p class="command-step">2. Benchmark</p>
+                        <p class="command-step">2. 跑 Benchmark</p>
                         <div class="command-block">
                             <code id="cmd-benchmark">python3 scripts/run_demo_benchmark.py</code>
                             <button data-copy-target="cmd-benchmark">Copy</button>
                         </div>
-                        <p>Generates clips, `benchmark_report.json`, `preview.png`, and `storyboard.png` with synthetic media.</p>
+                        <p>生成 clips、`benchmark_report.json`、`preview.png` 和 `storyboard.png`，全程不依赖外部素材。</p>
                     </article>
                     <article class="command-card">
-                        <p class="command-step">3. Launch copy</p>
+                        <p class="command-step">3. 生成发布文案</p>
                         <div class="command-block">
                             <code id="cmd-launch">python3 scripts/generate_launch_kit.py --report examples/benchmark/sample_benchmark_report.json</code>
                             <button data-copy-target="cmd-launch">Copy</button>
                         </div>
-                        <p>Builds launch-ready Markdown from a benchmark report so your promo copy stays anchored to real output.</p>
+                        <p>根据 benchmark report 生成 launch 文案，让对外传播和仓库真实产物保持一致。</p>
                     </article>
                 </div>
             </section>
 
             <section id="ship" class="ship reveal">
                 <div class="section-heading">
-                    <p class="kicker">Ship</p>
-                    <h2>Release and promotion are now part of the repo</h2>
+                    <p class="kicker">发布链路</p>
+                    <h2>发布和传播已经成为仓库能力的一部分</h2>
                 </div>
                 <div class="ship-layout">
                     <article class="ship-panel">
-                        <h3>Release prep</h3>
-                        <p>Generate validated release notes before tagging.</p>
+                        <h3>Release 准备</h3>
+                        <p>在打 tag 前先生成可验证的 release note。</p>
                         <div class="command-block compact">
                             <code id="cmd-release">python3 scripts/release_prep.py v0.3.0 --allow-dirty</code>
                             <button data-copy-target="cmd-release">Copy</button>
                         </div>
                     </article>
                     <article class="ship-panel">
-                        <h3>Tag flow</h3>
-                        <p>Pushing `v*.*.*` tags runs tests and drafts the GitHub Release automatically.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/docs/VERSIONING.md">Read versioning guide</a>
+                        <h3>Tag 流程</h3>
+                        <p>推送 `v*.*.*` tag 后会自动跑测试并创建 GitHub Release 草稿。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/blob/main/docs/VERSIONING.md">查看版本规范</a>
                     </article>
                     <article class="ship-panel">
-                        <h3>Community health</h3>
-                        <p>Issue templates, pull-request template, and benchmark artifacts reduce ambiguity for contributors and evaluators.</p>
-                        <a href="https://github.com/outhsics/openfang-auto-clip/tree/main/.github">Open GitHub templates</a>
+                        <h3>社区协作</h3>
+                        <p>Issue 模板、PR 模板和 benchmark 产物一起降低了外部贡献和评估的理解成本。</p>
+                        <a href="https://github.com/outhsics/openfang-auto-clip/tree/main/.github">查看 GitHub 模板</a>
                     </article>
                 </div>
             </section>
 
             <section id="docs" class="docs reveal">
                 <div class="section-heading">
-                    <p class="kicker">Docs</p>
-                    <h2>Start from the highest-signal entry points</h2>
+                    <p class="kicker">高信号入口</p>
+                    <h2>从最值得看的文档和入口开始</h2>
                 </div>
                 <div class="docs-grid">
                     <a class="doc-link" href="https://github.com/outhsics/openfang-auto-clip/blob/main/README.md">
                         <strong>README</strong>
-                        <span>Main positioning, reality check, and quick-start links.</span>
+                        <span>项目定位、Reality Check 和最核心的快速开始入口。</span>
                     </a>
                     <a class="doc-link" href="https://github.com/outhsics/openfang-auto-clip/blob/main/examples/benchmark/README.md">
                         <strong>Benchmark README</strong>
-                        <span>Fastest way to reproduce a safe end-to-end result.</span>
+                        <span>最快速复现一条安全完整链路的入口。</span>
                     </a>
                     <a class="doc-link" href="https://github.com/outhsics/openfang-auto-clip/blob/main/PUBLISH_GUIDE.md">
                         <strong>Publish Guide</strong>
-                        <span>Release flow, tagging, and promotion path.</span>
+                        <span>发布流程、tag 规则和对外传播路径。</span>
                     </a>
                     <a class="doc-link" href="https://github.com/outhsics/openfang-auto-clip/blob/main/WEB_MANAGER_README.md">
                         <strong>Web Manager</strong>
-                        <span>Local operator UI with persisted task history.</span>
+                        <span>带持久化任务记录的本地操作界面。</span>
                     </a>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p>OpenFang Auto Clip is a local-first open-source project. Keep the claims honest, keep the demos reproducible, and let the repo prove the work.</p>
+            <p>OpenFang Auto Clip 是一个本地优先的开源项目。先把 demo 做扎实，先把能力边界讲清楚，再让仓库自己证明工作质量。</p>
             <div class="footer-links">
-                <a href="https://github.com/outhsics/openfang-auto-clip">Repository</a>
+                <a href="https://github.com/outhsics/openfang-auto-clip">仓库</a>
                 <a href="https://github.com/outhsics/openfang-auto-clip/issues">Issues</a>
                 <a href="https://github.com/outhsics/openfang-auto-clip/discussions">Discussions</a>
             </div>
         </footer>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
